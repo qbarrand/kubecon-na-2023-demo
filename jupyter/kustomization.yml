@@ -1,0 +1,7 @@
+resources:
+  - sc.yml
+  - pvc.yml
+  - pvc-huggingface-cache.yml
+  - pod.yml
+
+namePrefix: kmm-demo-

@@ -1,0 +1,45 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: jupyter
+spec:
+  containers:
+  - name: jupyter
+    image: quay.io/quba/kmm-demo
+    args:
+      - start-notebook.py
+      - --PasswordIdentityProvider.hashed_password='argon2:$argon2id$v=19$m=10240,t=10,p=8$rRJOLtB7ucZclq2JzGfsqg$APLjovRMxVJbZi3MkfB0hX/jsbL4Yp064Ftmu0ZZFXo'
+    env:
+      - name: GRANT_SUDO
+        value: yes
+      - name: NB_GID
+        value: '110'
+    ports:
+      - containerPort: 8888
+        hostPort: 8888
+    resources:
+      limits:
+        cpu: '20'
+        memory: '64Gi'
+    securityContext:
+      privileged: true
+      runAsUser: 0
+      runAsGroup: 110
+    volumeMounts:
+      - name: dev
+        mountPath: /dev
+      - name: huggingface-cache
+        mountPath: /home/jovyan/.cache/huggingface
+      - name: work
+        mountPath: /home/jovyan/work
+  volumes:
+    - name: dev
+      hostPath:
+        path: /dev
+    - name: huggingface-cache
+      persistentVolumeClaim:
+        claimName: huggingface-cache
+    - name: work
+      persistentVolumeClaim:
+        claimName: pvc
+

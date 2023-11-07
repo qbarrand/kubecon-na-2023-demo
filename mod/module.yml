@@ -1,0 +1,22 @@
+---
+apiVersion: kmm.sigs.x-k8s.io/v1beta1
+kind: Module
+metadata:
+  name: kmm-demo
+spec:
+  moduleLoader:
+    container:
+      imagePullPolicy: Always
+      modprobe:
+        moduleName: i915
+      kernelMappings:
+        - literal: 5.15.0-86-generic
+          containerImage: quay.io/quba/kmm-demo-i915:5.15.0-86-generic
+          build:
+            dockerfileConfigMap:
+              name: kmm-demo-i915-ubuntu
+  imageRepoSecret:
+    name: kmm-demo-pull-secret
+  selector:
+    kubernetes.io/os: linux
+

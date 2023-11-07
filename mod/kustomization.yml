@@ -1,0 +1,18 @@
+resources:
+  - module.yml
+
+namePrefix: kmm-demo-
+
+configMapGenerator:
+  - name: i915-ubuntu
+    files:
+      - dockerfile=i915-ubuntu.Dockerfile
+
+secretGenerator:
+  - name: pull-secret
+    files:
+      - .dockerconfigjson
+    type: kubernetes.io/dockerconfigjson
+
+generatorOptions:
+  disableNameSuffixHash: true
