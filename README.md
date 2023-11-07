@@ -1,8 +1,8 @@
 # KubeCon NA 2023 KMM demo
 
-**KMM: Your Swiss Army Knife for Kernel Modules on Kubernetes**
-Quentin Barrand, Red Hat
-Hersh Pathak, Intel
+**KMM: Your Swiss Army Knife for Kernel Modules on Kubernetes**  
+Quentin Barrand, Red Hat  
+Hersh Pathak, Intel  
 
 🗣️ [Talk](https://sched.co/1R2v3)
 
